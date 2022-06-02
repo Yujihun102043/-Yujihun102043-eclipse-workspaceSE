@@ -8,15 +8,14 @@ import com.itwill.shop.member.Member;
 import com.itwill.shop.product.Product;
 
 /*
-	import java.lang.String;
- * java.lang package에 있는 클래스들은 import 구문생략가능.
- */
-
+import java.lang.String;
+java.lang package에있는 클래스들은 import 구문생략가능
+*/
 public class JavaClassImportMain {
 
 	public static void main(String[] args) {
 		/*
-		 * java.lang package에 있는 클래스들은 import 구문생략가능.
+		 * java.lang package에있는 클래스들은 import 구문생략가능
 		 */
 		java.lang.String str1 = "임포트";
 		String str2 = "김경호";
@@ -26,20 +25,19 @@ public class JavaClassImportMain {
 		 * import 단축키
 		 *  ctrl + shift + o
 		 *  
-		 *  ctrl + space --> 클래스 리스트 --> 클래스 선택 --> import 구문추가
+		 *  ctrl + space -->클래스리스트-->클래스선택-->import 구문추가
 		 */
-		
-		InputStream in; 
+
+		InputStream in;
 		OutputStream out;
 		Socket socket;
-		
+
 		Connection con;
-		
+
 		ShopService shopService;
 		Member member;
 		Product p;
-		
-		
+
 	}
 
 }

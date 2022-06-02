@@ -9,7 +9,7 @@ public abstract class Employee {
 		this.no = no;
 		this.name = name;
 	}
-	/*
+	/**
 	 * 급여계산
 	 *   - 실제구현작업불가능
 	 *   - 자식클래스에서 반드시 재정의해야하는 메쏘드

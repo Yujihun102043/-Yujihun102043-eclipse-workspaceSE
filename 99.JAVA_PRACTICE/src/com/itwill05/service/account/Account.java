@@ -15,12 +15,6 @@ public class Account {
 	 * 기본생성자(인자0개)
 	 */
 	
-	public Account(String owner, int balance, double iyul) {
-		this.owner = owner;
-		this.balance = balance;
-		this.iyul = iyul;
-	}
-	
 	public Account() {
 		//System.out.println("public Account() 기본생성자");
 	}
@@ -100,3 +94,17 @@ public class Account {
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

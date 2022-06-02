@@ -63,7 +63,7 @@ public class StringUseMain {
 			System.out.println("김씨인사람:"+name);
 		}
 		System.out.println("----------------친구들-----------------");
-		String[] names= {"김경호","김미숙","최경녀","김은희","신명숙"};
+		String[] names= {"정경호","김미숙","최경녀","김은희","신명숙"};
 		for (int i = 0; i < names.length; i++) {
 			if(names[i].startsWith("김")) {
 				System.out.println(names[i]);
@@ -79,7 +79,7 @@ public class StringUseMain {
 				count++;
 			}
 		}
-		kimArray = new String[count];
+		kimArray=new String[count];
 		int index=0;
 		for (int i = 0; i < names.length; i++) {
 			if(names[i].startsWith("김")) {
@@ -87,14 +87,13 @@ public class StringUseMain {
 				index++;
 			}
 		}
-		for (int i = 0; i < kimArray.length; i++) {
-			System.out.println(kimArray[i]+" ");
-			System.out.println();
-			
-		}
 		/*
 		 * [QUIZ]김씨를 출력한다.
 		 */
+		for (int i = 0; i < kimArray.length; i++) {
+			System.out.print(kimArray[i]+" ");
+		}
+		System.out.println();
 		System.out.println("---------endsWith------------");
 		String fileName="a.jpg";
 		if(fileName.endsWith(".jpg") || fileName.endsWith(".gif")) {

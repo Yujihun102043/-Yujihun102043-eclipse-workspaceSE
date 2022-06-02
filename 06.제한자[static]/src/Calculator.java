@@ -8,8 +8,7 @@
  * 
  */
 public class Calculator {
-	public Calculator() {
-		// TODO Auto-generated constructor stub
+	Calculator() {
 	}
 	/**
 	 * 더하기

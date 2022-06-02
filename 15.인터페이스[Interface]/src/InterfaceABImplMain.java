@@ -7,64 +7,89 @@
      * class keyword 대신에 interface 라는 keyword를사용
      * 추상메쏘드앞에 abstract 를 붙히지않는다.
      ex>public interface Test{
-     		public void method1(); 
+     		public void method1();
      		public abstract void method2();
         }
    - 사용
        1. interface를 상속(implements)받아서
-       2. 추상메쏘드를 재정의(구현)한후 사용한다.
+       2. 추상메쏘드를 재정의(구현)한후 자식클래스객체를 사용한다.
        
-       ex> public class TestImpl extends Object implements Test{ 
+       ex> public class TestImpl extends Object implements Test{
        			public void method1(){}
      			public void method2(){}
           }
-     class의 상속구조 안에 들어가지 않는다.
-     
 */
 public class InterfaceABImplMain {
 
 	public static void main(String[] args) {
-		System.out.println("----------InterfaceABImpl----------");
-		InterfaceABImpl abImpl = new InterfaceABImpl();
+		
+		
+		System.out.println("---------InterfaceABImpl--------");
+		InterfaceABImpl abImpl=
+				new InterfaceABImpl();
 		abImpl.method1();
 		abImpl.method2();
 		abImpl.method3();
 		abImpl.method4();
-		System.out.println("-----------Object----------");
+		System.out.println("-------------Object----------------");
 		Object o = abImpl;
 		System.out.println(o.toString());
-		System.out.println("----------InterfaceA----------");
-		InterfaceA ia = abImpl; // 형변환. 메소드 2개밖에 못씀
+		System.out.println("------------InterfaceA-------------");
+		InterfaceA ia=abImpl;
 		ia.method1();
 		ia.method2();
 		/*
 		ia.method3();
 		ia.method4();
-		 */
-		System.out.println("----------InterfaceB----------");
-		InterfaceB ib = abImpl; // 형변환 실제 메소드는 4개지만 호출은 2개밖에 못한다.
+		*/
+		System.out.println("------------InterfaceB-------------");
+		InterfaceB ib=abImpl;
 		/*
 		ib.method1();
 		ib.method2();
 		*/
 		ib.method3();
 		ib.method4();
-	
-		System.out.println("----------InterfaceA <---> InterfaceB----------");
-		InterfaceA ia2 = new InterfaceABImpl();
+		
+		
+		System.out.println("--------InterfaceA<--->InterfaceB----------------");
+		InterfaceA ia2=new InterfaceABImpl();
 		ia2.method1();
 		ia2.method2();
 		/*
-		ia2.method1();
-		ia2.method1();
+		ia2.method3();
+		ia2.method4();
 		*/
-		InterfaceB ib2 = (InterfaceB)ia2;
+		InterfaceB ib2=(InterfaceB)ia2;
 		/*
 		ib2.method1();
 		ib2.method2();
 		*/
 		ib2.method3();
 		ib2.method4();
+		
+		
+		
+		
+
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
