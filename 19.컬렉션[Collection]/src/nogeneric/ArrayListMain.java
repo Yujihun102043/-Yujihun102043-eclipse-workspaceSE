@@ -81,7 +81,7 @@ public class ArrayListMain {
 			if(tempAccount.getOwner().equals("KING")) {
 				Account removeAcc = (Account)accountList.remove(i);
 				removeAcc.print();
-				
+				i--; // 한번 더 돌아서 삭제
 			}
 		}
 		System.out.println("*****************1.계좌전체출력************************");
