@@ -1,8 +1,11 @@
-package nogeneric;
+package generic;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
-public class HashSetMain {
+import nogeneric.Account;
+
+public class HashSetGenericMain {
 
 	public static void main(String[] args) {
 		Account acc1=new Account(1111, "BING", 33000, 0.5);
@@ -11,10 +14,11 @@ public class HashSetMain {
 		Account acc4=new Account(4444, "YONG", 12000, 0.5);
 		Account acc5=new Account(5555, "SANG", 99000, 0.8);
 		
-		
-		HashSet accountSet=new HashSet();
+		HashSet<Account> accountSet = new HashSet<Account>();
 		System.out.println("# set size:"+accountSet.size());
-		System.out.println("-------------1.add--------------");
+		/*
+		 * add
+		 */
 		accountSet.add(acc1);
 		accountSet.add(acc2);
 		accountSet.add(acc3);
@@ -22,25 +26,28 @@ public class HashSetMain {
 		accountSet.add(acc5);
 		System.out.println("# set size:"+accountSet.size());
 		System.out.println(accountSet);
-		System.out.println("------------2.add[중복객체]-----");
-		/*
-		 * Object의 equals 메쏘드[주소비교] 를 사용해서 중복체크를한다.
-		 */
-		boolean isAdd = accountSet.add(acc1);
+		boolean isAdd = accountSet.add(acc5);
 		System.out.println("추가여부:"+isAdd);
 		System.out.println("# set size:"+accountSet.size());
 		System.out.println(accountSet);
-		System.out.println("-----------3.remove(객체)-------------");
-		boolean isRemove = accountSet.remove(acc4);
+		/*
+		 * remove
+		 */
+		boolean isRemove=accountSet.remove(acc1);
 		System.out.println("삭제여부:"+isRemove);
 		System.out.println("# set size:"+accountSet.size());
 		System.out.println(accountSet);
-		System.out.println("#################iteration[전체출력]#########################");
-		
-		
-		
-		
+		System.out.println("###################iteration[전체출력]###############");
+		/* << Set Iteration >>
+		 * 1. set 객체를 사용해서 Iterator 객체를 얻는다.
+		 */
+		Iterator<Account> accountIterator =  accountSet.iterator();
+		while(accountIterator.hasNext()) {
+			Account tempAccount=accountIterator.next();
+			tempAccount.print();
+		}
 
+		
 	}
 
 }

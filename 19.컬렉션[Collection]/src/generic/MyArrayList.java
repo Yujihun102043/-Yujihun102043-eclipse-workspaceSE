@@ -1,6 +1,6 @@
-package nogeneric;
+package generic;
 
-public class MyArrayList {
+public class MyArrayList<T> {
 	private int size;
 	private Object[] elementData;
 	public MyArrayList() {
@@ -8,15 +8,15 @@ public class MyArrayList {
 		size=0;
 	}
 	
-	public void add(Object element) {
+	public void add(T element) {
 		elementData[size]=element;
 		size++;
 	}
 	public int size() {
 		return size;
 	}
-	public Object get(int index) {
-		return elementData[index];
+	public T get(int index) {
+		return (T)elementData[index];
 		
 	}
 	

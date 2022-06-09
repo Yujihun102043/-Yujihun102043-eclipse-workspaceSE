@@ -14,10 +14,15 @@ public class ArrayListMain {
 		 * ArrayList객체생성
 		 */
 		ArrayList accountList=new ArrayList();
+		
+		
 		int size = accountList.size();
 		System.out.println("#size:"+size);
 		System.out.println("*****************1.add[맨마지막 index 에객체저장]******************");
-		accountList.add(acc1);
+		
+		accountList.add(new Account(1111, "BING", 33000, 0.5));
+		accountList.add(new Car("1212",12));
+		
 		accountList.add(acc2);
 		accountList.add(acc3);
 		System.out.println("#size:"+accountList.size());
@@ -81,7 +86,8 @@ public class ArrayListMain {
 			if(tempAccount.getOwner().equals("KING")) {
 				Account removeAcc = (Account)accountList.remove(i);
 				removeAcc.print();
-				i--; // 한번 더 돌아서 삭제
+				i--;
+				
 			}
 		}
 		System.out.println("*****************1.계좌전체출력************************");

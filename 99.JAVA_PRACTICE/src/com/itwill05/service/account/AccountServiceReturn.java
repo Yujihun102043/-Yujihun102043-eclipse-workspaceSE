@@ -89,14 +89,14 @@ public class AccountServiceReturn {
 	 * 4.계좌번호를 인자로받아서 계좌객체주소 한개반환
 	 */
 	public Account findByNo(int no){
-		Account findAccount=null;
+		Account finAccount=null;
 		for(int i=0;i<accounts.length;i++) {
 			if(accounts[i].getNo()==no) {
-				findAccount=accounts[i];
+				finAccount=accounts[i];
 				break;
 			}
 		}
-		return findAccount;
+		return finAccount;
 	}
 
 	/*
