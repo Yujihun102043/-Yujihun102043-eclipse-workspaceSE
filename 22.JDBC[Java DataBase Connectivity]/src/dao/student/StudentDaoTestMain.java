@@ -1,0 +1,10 @@
+package dao.student;
+
+public class StudentDaoTestMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

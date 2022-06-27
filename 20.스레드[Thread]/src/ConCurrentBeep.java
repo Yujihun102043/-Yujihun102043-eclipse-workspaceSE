@@ -1,6 +1,6 @@
 import java.awt.Toolkit;
 
-public class ConcurrentBeep extends Thread {
+public class ConCurrentBeep extends Thread {
 	@Override
 	public void run() {
 		Toolkit toolkit = Toolkit.getDefaultToolkit();

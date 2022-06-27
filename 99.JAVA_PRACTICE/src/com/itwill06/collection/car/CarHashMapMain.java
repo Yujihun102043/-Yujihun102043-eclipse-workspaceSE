@@ -7,19 +7,19 @@ import java.util.Set;
 public class CarHashMapMain {
 
 	public static void main(String[] args) {
-		Car c1 = new Car("2344",3 );
-		Car c2 = new Car("4566",4 );
-		Car c3 = new Car("4567",5 );
-		Car c4 = new Car("2389",6 );
-		Car c5 = new Car("3908",7 );
-		Car c6=  new Car("7891",8 );
-		Car c7 = new Car("5656",9 );
-		Car c8 = new Car("7789",10 );
-		Car c9 = new Car("4690",11 );
+		Car c1 = new Car("2344", 3);
+		Car c2 = new Car("4566", 4);
+		Car c3 = new Car("4567", 5);
+		Car c4 = new Car("2389", 6);
+		Car c5 = new Car("3908", 7);
+		Car c6 = new Car("7891", 8);
+		Car c7 = new Car("5656", 9);
+		Car c8 = new Car("7789", 10);
+		Car c9 = new Car("4690", 11);
 		/*
 		 * 0.Car HashMap 객체생성 초기화
 		 */
-		HashMap<String,Car> carMap=new HashMap<String,Car>();		
+		HashMap<String, Car> carMap = new HashMap<String, Car>();
 		System.out.println("1.입차 9대");
 		/*
 		 * 1.차량객체생성
@@ -34,22 +34,22 @@ public class CarHashMapMain {
 		carMap.put(c7.getNo(), c7);
 		carMap.put(c8.getNo(), c8);
 		carMap.put(c9.getNo(), c9);
-		
+
 		System.out.println("2.차량번호 7789번  차한대 정보출력");
 		carMap.get("7789").print();
-		
+
 		System.out.println("3.입차시간 8시이후 차량여러대 찾아서 정보출력");
 		Set<String> keySet = carMap.keySet();
+		System.out.println(keySet);
 		Iterator<String> keyIterator = keySet.iterator();
-		while(keyIterator.hasNext()) {
+		while (keyIterator.hasNext()) {
 			String key = keyIterator.next();
 			Car tempCar = carMap.get(key);
-			if(tempCar.getInTime() > 8) {
+			if (tempCar.getInTime() > 8) {
 				tempCar.print();
 			}
 		}
-		
-		
+
 		System.out.println("4.2389번차량 12시 출차");
 		/*
 		 * 1. 2389번차량찾기
@@ -58,18 +58,29 @@ public class CarHashMapMain {
 		 * 4. 2389번차량 주차장에서 차량삭제
 		 */
 		// 왜 Iterator 재사용하려하면 넘어가지는지 모르겠지만 일단 새로 선언해서 사용한다.
-			
+		for (String carKey : keySet) {
+			if(carMap.get(carKey).getNo().equals("2389")) {
+				carMap.get(carKey).print();
+				carMap.get(carKey).setOutTime(12);
+				carMap.get(carKey).calculateFee();
+				carMap.remove(carKey);
+				break;
+			}
+		}
 		
+
+		/*
+		carMap.get("2389").setOutTime(20);
+		carMap.get("2389").calculateFee();
+		Car saveCar = carMap.remove("2389");
+		saveCar.print();
+		*/
+
 		System.out.println("5. 2389번차량 출차후전체 차량출력");
+		for (String carkey : keySet) {
+			carMap.get(carkey).print();
+		}
 		
 	}
 
 }
-
-
-
-
-
-
-
-
