@@ -1,6 +1,9 @@
-package com.itwill.guest;
+package com.itwill.guest.test;
 
 import java.util.List;
+
+import com.itwill.guest.Guest;
+import com.itwill.guest.GuestDao;
 
 public class GusetDaoTestMain {
 
