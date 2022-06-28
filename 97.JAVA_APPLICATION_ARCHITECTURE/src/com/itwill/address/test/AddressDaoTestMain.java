@@ -1,10 +1,13 @@
-package com.itwill.address;
+package com.itwill.address.test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+
+import com.itwill.address.Address;
+import com.itwill.address.AddressDao;
 
 public class AddressDaoTestMain {
 	public static void main(String[] args) throws Exception{
