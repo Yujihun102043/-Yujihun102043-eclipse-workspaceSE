@@ -1,0 +1,56 @@
+######## AddressService(Manager) 클래스작성 ############
+1.클래스생성
+  	AddressService.java
+
+2. 요구사항에서 도출된단위업무를 주석으로기술	
+3. AddressService클래스 메쏘드기술(인자 ,반환타입)
+4. AddressDao를 멤버필드로선언
+5. AddressService클래스 생성자에서 AddressDao객체생성
+6. 도출된메쏘드내용채움
+
+
+  ex>
+	public class AddressService{
+		private AddressDao addressDao;
+		public AddressService(){
+			addressDao=new AddressDao();
+		}
+		
+		/*
+		 * 주소록쓰기
+		 */
+		public int addressWrite(Address newAddress) 
+				throws Exception{
+			<< AddressDao객체사용>>
+		}
+		/*
+		 * 주소록번호로 1개보기
+		 */
+		public Address addressDetail(int no) throws Exception{
+			
+		}
+		/*
+		 * 주소록번호로삭제
+		 */
+		public int addressDelete(int no) 
+				throws Exception{
+			
+		}
+		/*
+		 * 주소록 리스트보기
+		 */
+		public List<Address> addressList()throws Exception {
+			
+		}
+	}
+7. 도출된메쏘드내용채움
+
+8.<<< 반드시 테스트 되어야합니다.>>>
+	public class AddressServiceTestMain {
+	
+		public static void main(String[] args) throws Exception{
+			AddressService AddressService=
+					new AddressService();
+					
+		}
+	}				

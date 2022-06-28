@@ -27,6 +27,15 @@ public class AddressDaoTestMain {
 				addressDao.selectByNo(4);
 		System.out.println(findAddress);
 		System.out.println(addressDao.selectByNo(7));
+		
+		System.out.println("5.selectById");
+		findAddress=addressDao.selectById("guard88");
+		if(findAddress==null) {
+			System.out.println("null --> 아이디중복안됨");
+		}else {
+			System.out.println("아이디중복됨");
+			
+		}
 		System.out.println("5.selectAll");
 		List<Address> addressList = 
 				addressDao.selectAll();

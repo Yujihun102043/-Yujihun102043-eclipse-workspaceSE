@@ -10,8 +10,8 @@ public class DataSource {
 	/***********************************************/
 	private String driverClass = "oracle.jdbc.OracleDriver";
 	private String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-	private String user = "jdeveloper11";
-	private String password = "jdeveloper11";
+	private String user = "jdeveloper00";
+	private String password = "jdeveloper00";
 	/**********************************************/
 	
 	/*

@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 <<PreparedStatement>>
 - PrepareStatement를 사용하면  sql파싱이 한번만 이루어지므로 성능향상이된다.
 - PrepareStatement를 사용하면  sql을 작성할때 편리하다
+
 1. sql문작성
 - ?(파라메타) 를 사용해서 나중에 외부에서 데이타(리터럴)를 받을수있게한다.
   ex> insert into emp(empno,ename,job,manager,hiredate,sal,comm,deptno) values(?,?,?,?,?,?,?,?)	
@@ -41,8 +42,8 @@ public class PreparedStatementMain {
 		/*******************************************/
 		String driverClass="oracle.jdbc.OracleDriver";
 		String url="jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user="jdeveloper11";
-		String password="jdeveloper11";
+		String user="jdeveloper00";
+		String password="jdeveloper00";
 		/*******************************************/
 		
 		Class.forName(driverClass);
@@ -100,13 +101,14 @@ public class PreparedStatementMain {
 		GUEST_TITLE             VARCHAR2(100)  
 		GUEST_CONTENT           VARCHAR2(4000) 
 		*/
-		String insertSql="insert into guest values(guest_guest_no_seq.nextval,?,?,?,?,?,?)";
+		String insertSql="insert into guest values(guest_guest_no_seq.nextval,?,sysdate,?,?,?,?)";
 		pstmt=con.prepareStatement(insertSql);
 		pstmt.setString(1, "김유라");
-		
+	
 		java.util.Date utilBirthDay=new SimpleDateFormat("yyyy/MM/dd").parse("1998/05/05");
 		Date sqlBirthDay=new Date(utilBirthDay.getTime());
 		pstmt.setDate(2,sqlBirthDay);
+		
 		pstmt.setString(3,"guard00@gmail.com");
 		pstmt.setString(4,"http://www.google.com");
 		pstmt.setString(5,"dao연습");

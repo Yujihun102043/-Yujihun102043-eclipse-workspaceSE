@@ -9,7 +9,7 @@ public class AccountServiceArrayListMain {
 		AccountServiceArrayList accountServiceArrayList = new AccountServiceArrayList();
 		System.out.println("0.AccountServiceArrayList야 은행계좌추가해줘");
 		Account addAccount = new Account(1000, "고소영", 89000, 0.5);
-			
+		
 		boolean isAdd = accountServiceArrayList.addAccount(addAccount);
 		if(isAdd) {
 			System.out.println("account추가성공");

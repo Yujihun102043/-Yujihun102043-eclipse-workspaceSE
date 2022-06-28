@@ -26,7 +26,6 @@ public class AddressDao {
 		 */
 		dataSource=new DataSource();
 	}
-	
 	public int insert(Address address) throws Exception {
 		String insertSql = "insert into address values(address_no_seq.nextval,'" + 
 										address.getId() + "','"+ 
@@ -93,6 +92,26 @@ public class AddressDao {
 		return findAddress;
 	}
 
+	public Address selectById(String id) throws Exception {
+
+		String selectSql = "select no,id,name,phone,address from address where id ='" +id+"'";
+		Address findAddress = null;
+
+		Connection con =  dataSource.getConnection();
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(selectSql);
+		if (rs.next()) {
+			findAddress = new Address(rs.getInt("no"), 
+									rs.getString("id"), 
+									rs.getString("name"), 
+									rs.getString("phone"),
+									rs.getString("address"));
+		}
+		rs.close();
+		stmt.close();
+		con.close();
+		return findAddress;
+	}
 	public List<Address> selectAll() throws Exception {
 
 		String selectSql = "select no,id,name,phone,address from address";

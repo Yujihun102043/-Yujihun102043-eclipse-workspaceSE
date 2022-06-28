@@ -22,11 +22,6 @@ public class AcademyMemberArrayMain {
 		for (int i = 0; i < members.length; i++) {
 			members[i].print();
 		}
-		/*
-		for (AcademyMember academyMember : members) {
-			academyMember.print();
-		}
-		*/
 		System.out.println("2.번호 1   번 AcademyMember 한명 출력");
 		for (int i = 0; i < members.length; i++) {
 			if(members[i].getNo()==1) {
@@ -34,14 +29,6 @@ public class AcademyMemberArrayMain {
 				break;
 			}
 		}
-		
-		/*
-		for (AcademyMember academyMember : members) {
-			if(academyMember.getNo() == 1) {
-				academyMember.print();
-			}
-		}
-		*/
 		System.out.println("2.번호 2   번 AcademyMember 한명 출력");
 		for (int i = 0; i < members.length; i++) {
 			if(members[i].getNo()==2) {
@@ -49,39 +36,19 @@ public class AcademyMemberArrayMain {
 				break;
 			}
 		}
-		
-		/*
-		for (AcademyMember academyMember : members) {
-			if(academyMember.getNo() == 2) {
-				academyMember.print();
-				break;
-			}
-		}
-		*/
 		System.out.println("2.이름 KIM 인 AcademyMember 들   출력");
 		for (int i = 0; i < members.length; i++) {
 			if(members[i].getName().equals("KIM")){
 				members[i].print();
 			}
 		}
-		/*
-		for (AcademyMember academyMember : members) {
-			if(academyMember.getName().equals("KIM")) {
-				academyMember.print();
-			}
-		}
-		*/
+		
 		System.out.println("3.AcademyMember 중에서 AcademyStudent들 출력");
 		for (int i = 0; i < members.length; i++) {
 			if(members[i] instanceof AcademyStudent) {
 				members[i].print();
 			}
 		}
-		
-		for (AcademyMember academyMember : members) {
-			academyMember.
-		}
-		
 		System.out.println("3.AcademyMember 중에서 AcademyGangsa들 출력");
 		for (int i = 0; i < members.length; i++) {
 			if(members[i] instanceof AcademyGangsa) {
@@ -119,4 +86,3 @@ public class AcademyMemberArrayMain {
 	}
 
 }
-

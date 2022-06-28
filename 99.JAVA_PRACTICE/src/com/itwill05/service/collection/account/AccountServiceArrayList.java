@@ -1,6 +1,9 @@
 package com.itwill05.service.collection.account;
 
+
+
 import java.util.ArrayList;
+
 
 /*
  * 1.ArrayList<Account>(계좌객체들) 을멤버변수로가진다.
@@ -21,7 +24,6 @@ public class AccountServiceArrayList {
 		accountList.add(new Account(8888, "QIM", 91000, 1.7));
 		accountList.add(new Account(9999, "MIM", 12000, 0.7));
 	}
-
 	/*
 	private Account[] accounts= {
 			new Account(1111, "KIM", 89000, 1.3),
@@ -51,15 +53,11 @@ public class AccountServiceArrayList {
 		 * 중복이면      호출한클래스에게 false
 		 * 중복이 아니면 accountList에 add하고  호출한클래스에게 true 를 반환해줌[OPTION]
 		 */
-		// accountList.add(account);
-		for (int i = 0; i < accountList.size(); i++) {
-			while (account.getNo() == accountList.get(i).getNo()) {
-				return false;
-			}
-		}
-		accountList.add(account);
+		//accountList.add(account);
+		
 		return true;
 	}
+
 	/*
 	 * 1.은행계좌들 총계좌수반환메쏘드정의
 	 */
@@ -94,9 +92,6 @@ public class AccountServiceArrayList {
 	 */
 	public int totBalance() {
 		int totBalance = 0;
-		for (Account account : accountList) {
-			totBalance += account.getBalance();
-		}
 
 		return totBalance;
 	}
@@ -106,12 +101,7 @@ public class AccountServiceArrayList {
 	 */
 	public Account findByNo(int no) {
 		Account findAccount = null;
-		for (Account account : accountList) {
-			if (account.getNo() == no) {
-				findAccount = account;
-				break;
-			}
-		}
+
 		return findAccount;
 	}
 
@@ -120,14 +110,14 @@ public class AccountServiceArrayList {
 	 */
 	public ArrayList<Account> findByBalance(int balance) {
 		ArrayList<Account> findAccountList = new ArrayList<Account>();
-		
+
 		return findAccountList;
 	}
 
 	/*
 	 * 8.6666번계좌 4000원 입금한후 입금계좌 참조변수반환
 	 */
-	public Account ipGum(int no, int m) {
+	public  Account ipGum(int no, int m) {
 		return null;
 	}
 
@@ -161,7 +151,7 @@ public class AccountServiceArrayList {
 	 *  	Collections.sort();
 	 */
 	public void sortByBalanceAsc() {
-
+		
 	}
 
 	/*

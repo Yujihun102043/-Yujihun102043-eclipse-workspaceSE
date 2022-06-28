@@ -50,13 +50,7 @@ public class StudentServiceArrayList {
 	 * 2. 전체학생 총점으로 석차계산
 	 */
 	public void calculateRank() {
-		for (int i = 0; i < studentList.size(); i++) {
-			for (int j = 0; j < studentList.size(); j++) {
-				if(studentList.get(j).getTot()>studentList.get(i).getTot()) {
-					studentList.get(i).increaseRank();
-				}
-			}
-		}
+
 	}
 
 	/*

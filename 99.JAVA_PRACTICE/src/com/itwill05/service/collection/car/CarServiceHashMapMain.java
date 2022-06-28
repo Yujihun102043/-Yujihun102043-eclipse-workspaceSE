@@ -7,12 +7,13 @@ public class CarServiceHashMapMain {
 
 	public static void main(String[] args) {
 		
-		CarServiceHashMap carService=new CarServiceHashMap(20);
+		CarServiceHashMap carService=
+				new CarServiceHashMap(20);
 		
 		System.out.println("0.CarService객체야 차객체인자로줄께 입차시켜줘");
 		Car c1 = new Car("2344",3 );
 		boolean isSuccess = carService.ipCha(c1);
-		if(isSuccess) {
+		if(!isSuccess) {
 			System.out.println("만차 차빼!!!");
 		}
 		carService.ipCha(new Car("4566",4 ));
@@ -21,8 +22,8 @@ public class CarServiceHashMapMain {
 		carService.ipCha(new Car("3908",7 ));
 		carService.ipCha(new Car("7891",8 ));
 		carService.ipCha(new Car("3433",9 ));
-	
-		System.out.println("1.CarService객체야 전체차량출력해줘");	
+		
+		System.out.println("1.CarService객체야 전체차량출력해줘");
 		carService.print();
 		System.out.println("2.CarService객체야 전체주차구획수반환해줘");
 		System.out.println(carService.getParkingLotCount());
