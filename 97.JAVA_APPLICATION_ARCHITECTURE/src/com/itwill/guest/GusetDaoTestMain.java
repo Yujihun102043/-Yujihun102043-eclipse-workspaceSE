@@ -1,4 +1,4 @@
-package dao.guest;
+package com.itwill.guest;
 
 import java.util.List;
 

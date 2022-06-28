@@ -1,4 +1,4 @@
-package dao.guest;
+package com.itwill.guest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.common.DataSource;
+import com.itwill.common.DataSource;
+
 
 /*
  * Dao(Data[DataBase] Access Object)객체(클래스)
