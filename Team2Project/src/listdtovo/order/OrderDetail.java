@@ -1,25 +1,36 @@
 package listdtovo.order;
 
-import java.sql.Date;
-
 public class OrderDetail {
+	private int orderDetail_no;
 	private int order_no;
-	private Date order_date;
-	private int member_no;
-	private int order_price;
 	private int order_qty;
+	private int order_stmt;
+	private int product_no;
+	private int product_espresso;
+	private int produt_syrup;
 	
 	public OrderDetail() {
 		
 	}
 
-	public OrderDetail(int order_no, Date order_date, int member_no, int order_price, int order_qty) {
+	public OrderDetail(int orderDetail_no, int order_no, int order_qty, int order_stmt, int product_no,
+			int product_espresso, int produt_syrup) {
 		super();
+		this.orderDetail_no = orderDetail_no;
 		this.order_no = order_no;
-		this.order_date = order_date;
-		this.member_no = member_no;
-		this.order_price = order_price;
 		this.order_qty = order_qty;
+		this.order_stmt = order_stmt;
+		this.product_no = product_no;
+		this.product_espresso = product_espresso;
+		this.produt_syrup = produt_syrup;
+	}
+
+	public int getOrderDetail_no() {
+		return orderDetail_no;
+	}
+
+	public void setOrderDetail_no(int orderDetail_no) {
+		this.orderDetail_no = orderDetail_no;
 	}
 
 	public int getOrder_no() {
@@ -30,30 +41,6 @@ public class OrderDetail {
 		this.order_no = order_no;
 	}
 
-	public Date getOrder_date() {
-		return order_date;
-	}
-
-	public void setOrder_date(Date order_date) {
-		this.order_date = order_date;
-	}
-
-	public int getMember_no() {
-		return member_no;
-	}
-
-	public void setMember_no(int member_no) {
-		this.member_no = member_no;
-	}
-
-	public int getOrder_price() {
-		return order_price;
-	}
-
-	public void setOrder_price(int order_price) {
-		this.order_price = order_price;
-	}
-
 	public int getOrder_qty() {
 		return order_qty;
 	}
@@ -62,10 +49,43 @@ public class OrderDetail {
 		this.order_qty = order_qty;
 	}
 
+	public int getOrder_stmt() {
+		return order_stmt;
+	}
+
+	public void setOrder_stmt(int order_stmt) {
+		this.order_stmt = order_stmt;
+	}
+
+	public int getProduct_no() {
+		return product_no;
+	}
+
+	public void setProduct_no(int product_no) {
+		this.product_no = product_no;
+	}
+
+	public int getProduct_espresso() {
+		return product_espresso;
+	}
+
+	public void setProduct_espresso(int product_espresso) {
+		this.product_espresso = product_espresso;
+	}
+
+	public int getProdut_syrup() {
+		return produt_syrup;
+	}
+
+	public void setProdut_syrup(int produt_syrup) {
+		this.produt_syrup = produt_syrup;
+	}
+
 	@Override
 	public String toString() {
-		return "OrderDetail [order_no=" + order_no + ", order_date=" + order_date + ", member_no=" + member_no
-				+ ", order_price=" + order_price + ", order_qty=" + order_qty + "]";
+		return "OrderDetail [orderDetail_no=" + orderDetail_no + ", order_no=" + order_no + ", order_qty=" + order_qty
+				+ ", order_stmt=" + order_stmt + ", product_no=" + product_no + ", product_espresso=" + product_espresso
+				+ ", produt_syrup=" + produt_syrup + "]";
 	}
 	
 	

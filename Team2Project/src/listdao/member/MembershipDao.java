@@ -8,6 +8,7 @@ import java.util.List;
 
 import common.DataSource;
 import listdtovo.member.Membership;
+import listsql.member.MembershipSQL;
 
 public class MembershipDao {
 	private DataSource dataSource;
@@ -18,10 +19,8 @@ public class MembershipDao {
 	}
 	
 	public int insertMembership(Membership membership) throws Exception{
-		String membership_insert = 
-				"insert into memvership values(membership_member_no_seq_nextval,?,?,?,sysdate,?,?,?,?)";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(membership_insert);
+		PreparedStatement pstmt = con.prepareStatement(MembershipSQL.MEMBERSHIP_INSERT);
 		pstmt.setString(1, membership.getMember_id());
 		pstmt.setString(2, membership.getMember_password());
 		pstmt.setString(3, membership.getMember_phone());
@@ -38,10 +37,8 @@ public class MembershipDao {
 	}
 	
 	public int updateMembership(Membership membership) throws Exception{
-		String membership_update = 
-				"update membership set member_id = ?, member_password = ?, member_phone = ?, member_birthday = ?, member_email = ?, member_nickname = ?, member_loc = ?, member_pagree = ?, member_eagree = ? where member_no = ?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(membership_update);
+		PreparedStatement pstmt = con.prepareStatement(MembershipSQL.MEMBERSHIP_UPDATE);
 		pstmt.setString(1, membership.getMember_id());
 		pstmt.setString(2, membership.getMember_password());
 		pstmt.setString(3, membership.getMember_phone());
@@ -59,9 +56,8 @@ public class MembershipDao {
 	}
 	
 	public int deleteMembership(int member_no) throws Exception{
-		String membership_delete = "delete from membership where member_no = ?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(membership_delete);
+		PreparedStatement pstmt = con.prepareStatement(MembershipSQL.MEMBERSHIP_DELETE);
 		pstmt.setInt(1, member_no);
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
@@ -71,9 +67,8 @@ public class MembershipDao {
 	
 	public Membership selectByNo(int member_no) throws Exception{
 		Membership findMembership = null;
-		String membership_select = "select * from membership where member_no = ?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(membership_select);
+		PreparedStatement pstmt = con.prepareStatement(MembershipSQL.MEMBERSHIP_SELECT_BY_NO);
 		pstmt.setInt(1, member_no);
 		ResultSet rs = pstmt.executeQuery();
 		if(rs.next()) {
@@ -96,9 +91,8 @@ public class MembershipDao {
 	
 	public List<Membership> selectAll() throws Exception{
 		List<Membership> membershipList = new ArrayList<Membership>();
-		String membership_selectAll = "select * from membership";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(membership_selectAll);
+		PreparedStatement pstmt = con.prepareStatement(MembershipSQL.MEMBERSHIP_SELECT_ALL);
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
 			membershipList.add(new Membership(rs.getInt("member_no"),

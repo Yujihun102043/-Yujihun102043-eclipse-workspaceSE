@@ -8,6 +8,7 @@ import java.util.List;
 
 import common.DataSource;
 import listdtovo.product.Product;
+import listsql.product.ProductSQL;
 
 public class ProductDao {
 	private DataSource dataSource;
@@ -16,10 +17,8 @@ public class ProductDao {
 	}
 	
 	public int insertProduct(Product product) throws Exception{
-		String product_insert = 
-				"insert into product values(product_product_no_seq_nextval,?,?,?,?,?,?)";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(product_insert);
+		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_INSERT);
 		pstmt.setString(1, product.getProduct_name());
 		pstmt.setInt(2, product.getProduct_price());
 		pstmt.setString(3, product.getProduct_allergy());
@@ -33,10 +32,8 @@ public class ProductDao {
 	}
 	
 	public int updateProduct(Product product) throws Exception{
-		String product_update =
-				"update product set product_name =?,product_price =?,product_allergy=?,product_content=?,product_espresso=?,product_syrup=? where product_no =?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(product_update);
+		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_UPDATE);
 		pstmt.setString(1, product.getProduct_name());
 		pstmt.setInt(2, product.getProduct_price());
 		pstmt.setString(3, product.getProduct_allergy());
@@ -51,9 +48,8 @@ public class ProductDao {
 	}
 	
 	public int deleteProduct(int product_no) throws Exception{
-		String product_delete = "delete from product where product_no =?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(product_delete);
+		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_DELETE);
 		pstmt.setInt(1, product_no);
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
@@ -63,9 +59,8 @@ public class ProductDao {
 	
 	public Product selectByNo(int product_no) throws Exception{
 		Product findProduct = null;
-		String product_select = "select * from product where product_no = ?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(product_select);
+		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_BY_NO);
 		pstmt.setInt(1, product_no);
 		ResultSet rs = pstmt.executeQuery();
 		if(rs.next()) {
@@ -85,9 +80,8 @@ public class ProductDao {
 	
 	public List<Product> selectAll() throws Exception{
 		List<Product> productList = new ArrayList<Product>();
-		String product_selectAll = "select * from product";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(product_selectAll);
+		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_ALL);
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()){
 			productList.add(new Product(rs.getInt("product_no"),

@@ -8,6 +8,7 @@ import java.util.List;
 
 import common.DataSource;
 import listdtovo.order.Cart;
+import listsql.order.CartSQL;
 
 public class CartDao {
 	private DataSource dataSource;
@@ -16,13 +17,13 @@ public class CartDao {
 	}
 	
 	public int insertCart(Cart cart) throws Exception{
-		String cart_insert = 
-				"insert into cart values(?,cart_cart_no_seq.nextval,?,?)"; // 고쳐야함
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(cart_insert);
+		PreparedStatement pstmt = con.prepareStatement(CartSQL.CART_INSERT);
 		pstmt.setInt(1, cart.getProduct_no());
 		pstmt.setInt(2, cart.getMember_no());
 		pstmt.setInt(3, cart.getCart_qty());
+		pstmt.setInt(4, cart.getProduct_espresso());
+		pstmt.setInt(5, cart.getProduct_syrup());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
@@ -30,14 +31,14 @@ public class CartDao {
 	}
 	
 	public int updateCart(Cart cart) throws Exception{
-		String cart_delete = 
-				"update cart set product_no=?,member_no=?,cart_qty=? where cart_no =?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(cart_delete);
+		PreparedStatement pstmt = con.prepareStatement(CartSQL.CART_UPDATE);
 		pstmt.setInt(1, cart.getProduct_no());
 		pstmt.setInt(2, cart.getMember_no());
 		pstmt.setInt(3, cart.getCart_qty());
-		pstmt.setInt(4, cart.getCart_no());
+		pstmt.setInt(4, cart.getProduct_espresso());
+		pstmt.setInt(5, cart.getProduct_syrup());
+		pstmt.setInt(6, cart.getCart_no());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
@@ -45,9 +46,8 @@ public class CartDao {
 	}
 	
 	public int deleteCast(int cart_no) throws Exception{
-		String cart_delete = "delete from cart where cart_no =?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(cart_delete);
+		PreparedStatement pstmt = con.prepareStatement(CartSQL.CART_DELETE);
 		pstmt.setInt(1, cart_no);
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
@@ -57,16 +57,17 @@ public class CartDao {
 	
 	public Cart selectByNo(int cart_no) throws Exception{
 		Cart findCart = null;
-		String cart_select = "select * from cart where cart_no=?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(cart_select);
+		PreparedStatement pstmt = con.prepareStatement(CartSQL.CART_SELECT_BY_NO);
 		pstmt.setInt(1, cart_no);
 		ResultSet rs = pstmt.executeQuery();
 		if(rs.next()) {
-			findCart = new Cart(rs.getInt("product_no"),
-								rs.getInt("cart_no"),
+			findCart = new Cart(rs.getInt("cart_no"),
+								rs.getInt("product_no"),
 								rs.getInt("member_no"),
-								rs.getInt("cart_qty"));
+								rs.getInt("cart_qty"),
+								rs.getInt("product_espresso"),
+								rs.getInt("product_syrup"));
 		}
 		rs.close();
 		pstmt.close();
@@ -76,15 +77,16 @@ public class CartDao {
 	
 	public List<Cart> selectAll() throws Exception{
 		List<Cart> cartList = new ArrayList<Cart>();
-		String cart_selectAll = "select * from cart";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(cart_selectAll);
+		PreparedStatement pstmt = con.prepareStatement(CartSQL.CART_SELECT_ALL);
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			cartList.add(new Cart(rs.getInt("product_no"),
-								  rs.getInt("cart_no"),
+			cartList.add(new Cart(rs.getInt("cart_no"),
+								  rs.getInt("product_no"),
 								  rs.getInt("member_no"),
-								  rs.getInt("cart_qty")));
+								  rs.getInt("cart_qty"),
+								  rs.getInt("product_espresso"),
+								  rs.getInt("product_syrup")));
 		}
 		rs.close();
 		pstmt.close();

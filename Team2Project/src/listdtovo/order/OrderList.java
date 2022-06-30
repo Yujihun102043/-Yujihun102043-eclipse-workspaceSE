@@ -1,70 +1,73 @@
 package listdtovo.order;
 
+import java.sql.Date;
+
 public class OrderList {
-	private int orderDetail_no;
 	private int order_no;
-	private int order_qty;
-	private int order_stmt;
-	private int product_no;
+	private Date order_date;
+	private int member_no;
+	private int order_price;
+	
 	
 	public OrderList() {
 		
 	}
 
-	public OrderList(int orderDetail_no, int order_no, int order_qty, int order_stmt, int product_no) {
+
+	public OrderList(int order_no, Date order_date, int member_no, int order_price) {
 		super();
-		this.orderDetail_no = orderDetail_no;
 		this.order_no = order_no;
-		this.order_qty = order_qty;
-		this.order_stmt = order_stmt;
-		this.product_no = product_no;
+		this.order_date = order_date;
+		this.member_no = member_no;
+		this.order_price = order_price;
 	}
 
-	public int getOrderDetail_no() {
-		return orderDetail_no;
-	}
-
-	public void setOrderDetail_no(int orderDetail_no) {
-		this.orderDetail_no = orderDetail_no;
-	}
 
 	public int getOrder_no() {
 		return order_no;
 	}
 
+
 	public void setOrder_no(int order_no) {
 		this.order_no = order_no;
 	}
 
-	public int getOrder_qty() {
-		return order_qty;
+
+	public Date getOrder_date() {
+		return order_date;
 	}
 
-	public void setOrder_qty(int order_qty) {
-		this.order_qty = order_qty;
+
+	public void setOrder_date(Date order_date) {
+		this.order_date = order_date;
 	}
 
-	public int getOrder_stmt() {
-		return order_stmt;
+
+	public int getMember_no() {
+		return member_no;
 	}
 
-	public void setOrder_stmt(int order_stmt) {
-		this.order_stmt = order_stmt;
+
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
 	}
 
-	public int getProduct_no() {
-		return product_no;
+
+	public int getOrder_price() {
+		return order_price;
 	}
 
-	public void setProduct_no(int product_no) {
-		this.product_no = product_no;
+
+	public void setOrder_price(int order_price) {
+		this.order_price = order_price;
 	}
+
 
 	@Override
 	public String toString() {
-		return "OrderList [orderDetail_no=" + orderDetail_no + ", order_no=" + order_no + ", order_qty=" + order_qty
-				+ ", order_stmt=" + order_stmt + ", product_no=" + product_no + "]";
+		return "OrderList [order_no=" + order_no + ", order_date=" + order_date + ", member_no=" + member_no
+				+ ", order_price=" + order_price + "]";
 	}
-	
+
 	
 }

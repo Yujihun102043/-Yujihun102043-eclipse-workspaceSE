@@ -8,6 +8,7 @@ import java.util.List;
 
 import common.DataSource;
 import listdtovo.order.OrderDetail;
+import listsql.order.OrderDetailSQL;
 
 public class OrderDetailDao {
 	private DataSource dataSource;
@@ -16,13 +17,14 @@ public class OrderDetailDao {
 	}
 	
 	public int insertOrderDetail(OrderDetail orderDetail) throws Exception{
-		String orderDetail_insert = 
-				"insert into orderdetail values(orderdetail_order_no_seq.nextval,sysdate,?,?,?)";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(orderDetail_insert);
-		pstmt.setInt(1, orderDetail.getMember_no());
-		pstmt.setInt(2, orderDetail.getOrder_price());
-		pstmt.setInt(3, orderDetail.getOrder_qty());
+		PreparedStatement pstmt = con.prepareStatement(OrderDetailSQL.ORDERDETAIL_INSERT);
+		pstmt.setInt(1, orderDetail.getOrder_no());
+		pstmt.setInt(2, orderDetail.getOrder_qty());
+		pstmt.setInt(3, orderDetail.getOrder_stmt());
+		pstmt.setInt(4, orderDetail.getProduct_no());
+		pstmt.setInt(5, orderDetail.getProduct_espresso());
+		pstmt.setInt(6, orderDetail.getProdut_syrup());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
@@ -30,44 +32,45 @@ public class OrderDetailDao {
 	}
 	
 	public int updateOrderDetail(OrderDetail orderDetail) throws Exception{
-		String orderDetail_update = 
-				"update orderDetail set order_date = ?, memeber_no = ?, order_price = ?, order_qty = ? where order_no =?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(orderDetail_update);
-		pstmt.setDate(1, orderDetail.getOrder_date()); // Date 손봐야함 수정예약
-		pstmt.setInt(2, orderDetail.getMember_no());
-		pstmt.setInt(3, orderDetail.getOrder_price());
-		pstmt.setInt(4, orderDetail.getOrder_qty());
-		pstmt.setInt(5, orderDetail.getOrder_no());
-		int rowCount = pstmt.executeUpdate();
-		return rowCount;
-	}
-	
-	public int deleteOrderDetail(int order_no) throws Exception{
-		String orderDetail_delete =
-				"delete from orderDetail where order_no = ?";
-		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(orderDetail_delete);
-		pstmt.setInt(1, order_no);
+		PreparedStatement pstmt = con.prepareStatement(OrderDetailSQL.ORDERDETAIL_UPDATE);
+		pstmt.setInt(1, orderDetail.getOrder_no());
+		pstmt.setInt(2, orderDetail.getOrder_qty());
+		pstmt.setInt(3, orderDetail.getOrder_stmt());
+		pstmt.setInt(4, orderDetail.getProduct_no());
+		pstmt.setInt(5, orderDetail.getProduct_espresso());
+		pstmt.setInt(6, orderDetail.getProdut_syrup());
+		pstmt.setInt(7, orderDetail.getOrderDetail_no());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
 		return rowCount;
 	}
 	
-	public OrderDetail selectByNo(int order_no) throws Exception{
-		OrderDetail findOrderDetail = null;
-		String orderDetail_select = "select * from orderdetail where order_no = ? ";
+	public int deleteOrderDetail(int orderdetail_no) throws Exception{
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(orderDetail_select);
-		pstmt.setInt(1, order_no);
+		PreparedStatement pstmt = con.prepareStatement(OrderDetailSQL.ORDERDETAIL_DELETE);
+		pstmt.setInt(1, orderdetail_no);
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		con.close();
+		return rowCount;
+	}
+	
+	public OrderDetail selectByNo(int orderdetail_no) throws Exception{
+		OrderDetail findOrderDetail = null;
+		Connection con = dataSource.getConncetion();
+		PreparedStatement pstmt = con.prepareStatement(OrderDetailSQL.ORDERDETAIL_SELECT_BY_NO);
+		pstmt.setInt(1, orderdetail_no);
 		ResultSet rs = pstmt.executeQuery();
-		if(rs.next()) {
-			findOrderDetail = new OrderDetail(rs.getInt("order_no"),
-											  rs.getDate("order_date"),
-											  rs.getInt("member_no"),
-											  rs.getInt("order_price"),
-											  rs.getInt("order_qty"));
+		if(rs.next()) { 
+			findOrderDetail = new OrderDetail(rs.getInt("orderdetail_no"),
+										  	  rs.getInt("order_no"),
+										  	  rs.getInt("order_qty"),
+										  	  rs.getInt("order_stmt"),
+										  	  rs.getInt("product_no"),
+										  	  rs.getInt("product_espresso"),
+										  	  rs.getInt("product_syrup"));
 		}
 		rs.close();
 		pstmt.close();
@@ -77,16 +80,17 @@ public class OrderDetailDao {
 	
 	public List<OrderDetail> selectAll() throws Exception{
 		List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
-		String orderDetail_selectAll = "select * from orderdetail";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(orderDetail_selectAll);
+		PreparedStatement pstmt = con.prepareStatement(OrderDetailSQL.ORDERDETAIL_SELECT_ALL);
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			orderDetailList.add(new OrderDetail(rs.getInt("order_no"),
-												rs.getDate("order_date"),
-												rs.getInt("member_no"),
-												rs.getInt("order_price"),
-												rs.getInt("order_qty")));
+			orderDetailList.add(new OrderDetail(rs.getInt("orderdetail_no"),
+												rs.getInt("order_no"),
+												rs.getInt("order_qty"),
+												rs.getInt("order_stmt"),
+												rs.getInt("product_no"),
+												rs.getInt("product_espresso"),
+												rs.getInt("product_syrup")));
 		}
 		rs.close();
 		pstmt.close();

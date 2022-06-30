@@ -1,15 +1,15 @@
 package listdtovo.member;
 
-public class Iogin {
+public class Login {
 	private String 	member_id;
 	private String 	member_password;
 	private int		login;
 	
-	public Iogin() {
+	public Login() {
 		
 	}
 
-	public Iogin(String member_id, String member_password, int login) {
+	public Login(String member_id, String member_password, int login) {
 		super();
 		this.member_id = member_id;
 		this.member_password = member_password;
@@ -42,8 +42,8 @@ public class Iogin {
 
 	@Override
 	public String toString() {
-		return "login [member_id=" + member_id + ", member_password=" + member_password + ", login=" + login + "]";
+		return "Login [member_id=" + member_id + ", member_password=" + member_password + ", login=" + login + "]";
 	}
-	
+
 	
 }

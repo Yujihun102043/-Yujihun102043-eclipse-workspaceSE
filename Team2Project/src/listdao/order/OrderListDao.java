@@ -8,6 +8,7 @@ import java.util.List;
 
 import common.DataSource;
 import listdtovo.order.OrderList;
+import listsql.order.OrderListSQL;
 
 public class OrderListDao {
 	private DataSource dataSource;
@@ -16,14 +17,10 @@ public class OrderListDao {
 	}
 	
 	public int insertOrderList(OrderList orderList) throws Exception{
-		String orderList_insert = 
-				"insert into orderlist values(orderlist_orderdetail_no_seq_nextval,?,?,?,?)";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(orderList_insert);
-		pstmt.setInt(1, orderList.getOrder_no());
-		pstmt.setInt(2, orderList.getOrder_qty());
-		pstmt.setInt(3, orderList.getOrder_stmt());
-		pstmt.setInt(4, orderList.getProduct_no());
+		PreparedStatement pstmt = con.prepareStatement(OrderListSQL.ORDERLIST_INSERT);
+		pstmt.setInt(1, orderList.getMember_no());
+		pstmt.setInt(2, orderList.getOrder_price());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
@@ -31,46 +28,37 @@ public class OrderListDao {
 	}
 	
 	public int updateOrderList(OrderList orderList) throws Exception{
-		String orderList_update =
-				"update orderlist set order_no = ?,order_qty = ?, order_stmt = ?, product_no = ? where orderdetail_no =?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(orderList_update);
-		pstmt.setInt(1, orderList.getOrder_no());
-		pstmt.setInt(2, orderList.getOrder_qty());
-		pstmt.setInt(3, orderList.getOrder_stmt());
-		pstmt.setInt(4, orderList.getProduct_no());
-		pstmt.setInt(5, orderList.getOrderDetail_no());
+		PreparedStatement pstmt = con.prepareStatement(OrderListSQL.ORDERLIST_UPDATE);
+		pstmt.setDate(1, orderList.getOrder_date()); // Date 손봐야함 수정예약
+		pstmt.setInt(2, orderList.getMember_no());
+		pstmt.setInt(3, orderList.getOrder_price());
+		pstmt.setInt(4, orderList.getOrder_no());
+		int rowCount = pstmt.executeUpdate();
+		return rowCount;
+	}
+	
+	public int deleteOrderList(int order_no) throws Exception{
+		Connection con = dataSource.getConncetion();
+		PreparedStatement pstmt = con.prepareStatement(OrderListSQL.ORDERLIST_DELETE);
+		pstmt.setInt(1, order_no);
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
 		return rowCount;
 	}
 	
-	public int deleteOrderList(int orderdetail_no) throws Exception{
-		String orderList_delete = "delete from orderList where orderdetail_no =?";
-		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(orderList_delete);
-		pstmt.setInt(1, orderdetail_no);
-		int rowCount = pstmt.executeUpdate();
-		pstmt.close();
-		con.close();
-		return rowCount;
-	}
-	
-	public OrderList selectByNo(int orderdetail_no) throws Exception{
+	public OrderList selectByNo(int order_no) throws Exception{
 		OrderList findOrderList = null;
-		String orderList_select = "select * from orderlist where orderdetail_no = ?";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(orderList_select);
-		pstmt.setInt(1, orderdetail_no);
+		PreparedStatement pstmt = con.prepareStatement(OrderListSQL.ORDERLIST_SELECT_BY_NO);
+		pstmt.setInt(1, order_no);
 		ResultSet rs = pstmt.executeQuery();
-		if(rs.next()) { 
-			findOrderList = new OrderList(rs.getInt("orderdetail_no"),
-										  rs.getInt("order_no"),
-										  rs.getInt("order_qty"),
-										  rs.getInt("order_stmt"),
-										  rs.getInt("product_no"));
-		
+		if(rs.next()) {
+			findOrderList = new OrderList(rs.getInt("order_no"),
+										  rs.getDate("order_date"),
+										  rs.getInt("member_no"),
+										  rs.getInt("order_price"));
 		}
 		rs.close();
 		pstmt.close();
@@ -80,16 +68,14 @@ public class OrderListDao {
 	
 	public List<OrderList> selectAll() throws Exception{
 		List<OrderList> orderListList = new ArrayList<OrderList>();
-		String orderList_selectAll = "select * from orderlist";
 		Connection con = dataSource.getConncetion();
-		PreparedStatement pstmt = con.prepareStatement(orderList_selectAll);
+		PreparedStatement pstmt = con.prepareStatement(OrderListSQL.ORDERLIST_SELECT_ALL);
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			orderListList.add(new OrderList(rs.getInt("orderdetail_no"),
-											rs.getInt("order_no"),
-											rs.getInt("order_qty"),
-											rs.getInt("order_stmt"),
-											rs.getInt("product_no")));
+			orderListList.add(new OrderList(rs.getInt("order_no"),
+											rs.getDate("order_date"),
+											rs.getInt("member_no"),
+											rs.getInt("order_price")));
 		}
 		rs.close();
 		pstmt.close();
