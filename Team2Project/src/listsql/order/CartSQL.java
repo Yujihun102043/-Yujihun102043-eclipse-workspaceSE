@@ -1,6 +1,6 @@
-package orderSQL;
+package listsql.order;
 
-public class cartSQL {
+public class CartSQL {
 	public static final String CART_INSERT
 	="insert into cart values(?,cart_cart_no_seq.nextval,?,?)";
 	public static final String CART_UPDATE

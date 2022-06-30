@@ -1,4 +1,4 @@
-package orderSQL;
+package listsql.order;
 
 public class OrderListSQL {
 	public static final String ORDERLIST_INSERT
