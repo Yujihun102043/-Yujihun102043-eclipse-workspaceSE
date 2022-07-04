@@ -1,3 +1,4 @@
+DROP TABLE cart CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE userinfo CASCADE CONSTRAINTS;
 
@@ -19,8 +20,26 @@ CREATE TABLE product(
 );
 
 
+CREATE TABLE cart(
+		cart_no                       		NUMBER(10)		 NULL ,
+		cart_qty                      		NUMBER(10)		 NULL ,
+		userid                        		VARCHAR2(50)		 NULL ,
+		p_no                          		NUMBER(10)		 NULL 
+);
+
+DROP SEQUENCE cart_cart_no_SEQ;
+
+CREATE SEQUENCE cart_cart_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+
+
+
 
 ALTER TABLE userinfo ADD CONSTRAINT IDX_userinfo_PK PRIMARY KEY (userid);
 
 ALTER TABLE product ADD CONSTRAINT IDX_product_PK PRIMARY KEY (p_no);
+
+ALTER TABLE cart ADD CONSTRAINT IDX_cart_PK PRIMARY KEY (cart_no);
+ALTER TABLE cart ADD CONSTRAINT IDX_cart_FK0 FOREIGN KEY (userid) REFERENCES userinfo (userid);
+ALTER TABLE cart ADD CONSTRAINT IDX_cart_FK1 FOREIGN KEY (p_no) REFERENCES product (p_no);
 

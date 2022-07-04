@@ -13,14 +13,20 @@ insert into product values(5, '포메라니안', 800000, 'pomeranian.jpg','키�
 insert into product values(6, '샤페이', 700000, 'shaipei.jpg','애교가많아요.', 0);
 insert into product values(7, '닥스훈트', 800000, 'dachshund.jpg','멋있어요.', 0);
 insert into product values(8, '사모예드', 800000, 'samoyed.jpg','용감해요.', 0);
-/**************************cart insert****************************/
---guard1님 카트 담기(insert)
+/***********************cart insert*******************************/
+--guard1님카트담기(insert)
 insert into cart(cart_no,cart_qty,p_no,userid) values(cart_cart_no_seq.nextval,1,3,'guard1');
 insert into cart(cart_no,cart_qty,p_no,userid) values(cart_cart_no_seq.nextval,2,7,'guard1');
 insert into cart(cart_no,cart_qty,p_no,userid) values(cart_cart_no_seq.nextval,3,8,'guard1');
-
---guard2님 카트 담기(insert)
+--guard2님카트담기(insert)
 insert into cart(cart_no,cart_qty,p_no,userid) values(cart_cart_no_seq.nextval,1,1,'guard2');
 insert into cart(cart_no,cart_qty,p_no,userid) values(cart_cart_no_seq.nextval,2,2,'guard2');
-
 commit;
+
+
+
+
+
+
+
+
