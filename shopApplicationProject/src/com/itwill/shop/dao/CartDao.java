@@ -209,6 +209,7 @@ public class CartDao {
 		}
 		return deleteRowCount;
 	}
+	
 	public CartItem getCartItemByCartNo(int cart_no)throws Exception {
 		CartItem cartItem=null;
 		Connection con=null;
@@ -218,4 +219,5 @@ public class CartDao {
 		
 		return cartItem;
 	}
+	
 }
