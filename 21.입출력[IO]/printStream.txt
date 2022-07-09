@@ -1,0 +1,5 @@
+프린트스트림을공부합니다.
+3.141592
+김
+java.lang.Object@70dea4e
+true
