@@ -9,10 +9,10 @@ import java.io.FileInputStream;
  * 3. 입력스트림(InputStream)으로부터 한바이트씩  읽는다(read) -- int 타입으로 읽는다?
  * 4. 입력스트림(InputStream)닫는다.(close) 
  */
-public class FileInputStreamMian {
+public class FileInputStreamain {
 
 	public static void main(String[] args) throws Exception{
-		FileInputStream fis = new FileInputStream("fileOut.dat");
+		FileInputStream fis = new FileInputStream("fileOut.dat"); // 
 		
 		int readByte = fis.read();
 		System.out.println("1.byte:"+Integer.toBinaryString(readByte));
@@ -36,6 +36,7 @@ public class FileInputStreamMian {
 		
 		// 지금 출력하는 0~255의 숫자들은 자료의 구성요소다.
 		// 파일의 끝은 -1이다.
+		
 	}
 
 }

@@ -1,20 +1,20 @@
 package bytestream;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-
 public class FileCopyMain {
-
 	public static void main(String[] args) throws Exception{
-		FileInputStream fis = new FileInputStream("ChromeSetup.exe");
-		FileOutputStream fos = new FileOutputStream("ChromeSetup_copy.exe"); // 해당 파일명이 존재하면 덮어씌운다.
+		FileInputStream fis=
+				new FileInputStream("ChromeSetup.exe");
+		FileOutputStream fos=
+				new FileOutputStream("ChromeSetup_copy1.exe");
 		
-		int byteCount = 0;
-		int starCount = 0;
+		int byteCount=0;
+		int starCount=0;
 		long copyStartTime = System.currentTimeMillis();
+		
 		while(true) {
 			int readByte = fis.read();
-			if(readByte == -1)break; // -1은 끝.
+			if(readByte==-1)break;
 			byteCount++;
 			if(byteCount%1024==0) {
 				System.out.print("*");
@@ -25,15 +25,13 @@ public class FileCopyMain {
 			}
 			fos.write(readByte);
 		}
-		long copyEndTime = System.currentTimeMillis();
-		long duration = copyEndTime - copyStartTime;
+		long copyEndTime=System.currentTimeMillis();
+		long duration=copyEndTime-copyStartTime;
 		fis.close();
 		fos.close();
 		
-		
 		System.out.println();
-		System.out.println("FileCopy:"+byteCount+" bytes copy");
-		System.out.println("took "+duration+ " ms");	
-		}
-
+		System.out.println("FileCopy:"+byteCount+ " bytes copy");
+		System.out.println("took "+duration+" ms");
+	}
 }
